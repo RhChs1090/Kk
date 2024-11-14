@@ -1,0 +1,538 @@
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 400, 0, 300)
+Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+Frame.BorderSizePixel = 0
+Frame.Active = true
+Frame.Draggable = true
+Frame.Parent = ScreenGui
+
+local FrameCorner = Instance.new("UICorner")
+FrameCorner.CornerRadius = UDim.new(0, 10)
+FrameCorner.Parent = Frame
+
+local Close = Instance.new("TextButton")
+Close.Size = UDim2.new(0, 40, 0, 40)
+Close.Position = UDim2.new(1, -40, 0, 0)
+Close.BackgroundTransparency = 1
+Close.Text = "×"
+Close.TextScaled = true
+Close.TextColor3 = Color3.fromRGB(150, 150, 150)
+Close.Parent = Frame
+Close.MouseButton1Click:Connect(function()
+   ScreenGui:Destroy()
+end)
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 30)
+Title.Position = UDim2.new(0, 0, 0.05, 0)
+Title.Text = "Key System"
+Title.TextSize = 18
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1
+Title.Parent = Frame
+
+local Instructions = Instance.new("TextLabel")
+Instructions.Size = UDim2.new(1, 0, 0, 30)
+Instructions.Position = UDim2.new(0, 0, 0.2, 0)
+Instructions.Text = "Enter Key To Access The Script"
+Instructions.TextSize = 13
+Instructions.TextColor3 = Color3.fromRGB(150, 150, 150)
+Instructions.BackgroundTransparency = 1
+Instructions.Parent = Frame
+
+local TextBox = Instance.new("TextBox")
+TextBox.Size = UDim2.new(0.8, 0, 0.2, 0)
+TextBox.Position = UDim2.new(0.1, 0, 0.4, 0)
+TextBox.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+TextBox.PlaceholderText = "Enter Key..."
+TextBox.Text = ""
+TextBox.TextSize = 18
+TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.Parent = Frame
+
+local TextBoxCorner = Instance.new("UICorner")
+TextBoxCorner.CornerRadius = UDim.new(0, 5)
+TextBoxCorner.Parent = TextBox
+
+local GetKey = Instance.new("TextButton")
+GetKey.Size = UDim2.new(0.35, 0, 0.15, 0)
+GetKey.Position = UDim2.new(0.1, 0, 0.7, 0)
+GetKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+GetKey.Text = "Get Key"
+GetKey.TextSize = 18
+GetKey.TextColor3 = Color3.fromRGB(150, 150, 150)
+GetKey.Parent = Frame
+
+local GetKeyCorner = Instance.new("UICorner")
+GetKeyCorner.CornerRadius = UDim.new(0, 5)
+GetKeyCorner.Parent = GetKey
+
+local CheckKey = Instance.new("TextButton")
+CheckKey.Size = UDim2.new(0.35, 0, 0.15, 0)
+CheckKey.Position = UDim2.new(0.55, 0, 0.7, 0)
+CheckKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+CheckKey.Text = "Check Key"
+CheckKey.TextSize = 18
+CheckKey.TextColor3 = Color3.fromRGB(150, 150, 150)
+CheckKey.Parent = Frame
+
+local CheckKeyCorner = Instance.new("UICorner")
+CheckKeyCorner.CornerRadius = UDim.new(0, 5)
+CheckKeyCorner.Parent = CheckKey
+
+GetKey.MouseButton1Click:Connect(function()
+   setclipboard("Your Way How To Get The Key")
+end)
+
+local function validateKey(key)
+    return key == "Key"
+end
+
+CheckKey.MouseButton1Click:Connect(function()
+    local enteredKey = TextBox.Text
+    if validateKey(enteredKey) then
+        TextBox.PlaceholderText = "Correct Key!"
+        TextBox.Text = ""
+        wait(1)
+        ScreenGui:Destroy()
+
+loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
+
+    else
+        TextBox.PlaceholderText = "Invalid key. Try again."
+        TextBox.Text = ""
+        wait(1)
+        TextBox.PlaceholderText = "Enter Key..."
+        TextBox.Text = ""
+    end
+end)
+
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
+local Window = redzlib:MakeWindow({
+    Title = "Raio Hub V4.1 | Brasil Ilha Bela",
+    SubTitle = "Powered By Raio.Hub Team",
+    SaveFolder = "RaioHubCfg.lua" 
+  })
+redzlib:SetScale(475)
+  local Tab1 = Window:MakeTab({"Player", "user"}) 
+  local Tab2 = Window:MakeTab({"Pvp", "swords"})
+  local Tab3 = Window:MakeTab({"Staff", "user"})
+
+  local Button = Tab1:AddButton({"Comprar Coca", function(Value)
+  local args = {
+    [1] = "Coca-Cola"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("InventarioSystem"):WaitForChild("Comprar"):FireServer(unpack(args))
+end})
+
+local Button = Tab1:AddButton({"Comprar Pizza", function(Value)
+    local args = {
+      [1] = "Pizza"
+  }
+  
+  game:GetService("ReplicatedStorage"):WaitForChild("InventarioSystem"):WaitForChild("Comprar"):FireServer(unpack(args))
+  end})
+
+  local Button = Tab1:AddButton({"Ant Multa", function(Value)
+    local carecaodeiamultas = game.Workspace.AutoEscola.LocalMultas
+
+    if carecaodeiamultas then
+        carecaodeiamultas:Destroy()
+    end
+  end})
+
+local SpeedMultiplier = 1;
+
+local function onCharacterAdded(character)
+  local humanoid = character:WaitForChild("Humanoid")
+  local oldWalkSpeed = humanoid.WalkSpeed
+  humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+    humanoid.WalkSpeed = oldWalkSpeed * SpeedMultiplier
+  end)
+end
+
+game:GetService("Players").LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
+
+if game:GetService("Players").LocalPlayer.Character then
+  onCharacterAdded(game:GetService("Players").LocalPlayer.Character)
+end
+
+local Dropdown = Tab1:AddDropdown({
+  Name = "Speed Multiplier",
+  Description = "Selecione o <font color='rgb(150, 0, 255)'>Multiplicador de velocidade que vc deseja:</font>",
+  Options = {"1x", "2x", "3x", "4x", "5x", "6x", "7x", "8x", "9x", "10x"},
+  Default = "1x",
+  Flag = "dropdownSpeedMultiplier",
+  Callback = function(Value)
+    local number = tonumber(string.match(Value, "%d+"))
+    if number then
+      SpeedMultiplier = number
+      local humanoid = game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid")
+      if humanoid then
+        humanoid.WalkSpeed = humanoid.WalkSpeed / (SpeedMultiplier / number)
+      end
+    end
+  end
+})
+
+local Toggle = Tab3:AddToggle({
+    Name = "Detecção Staff",
+    Default = false,
+    Callback = function(Value)
+        local ScreenGui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("MyScreenGui")
+        
+        if Value then
+            if not ScreenGui then
+                ScreenGui = Instance.new("ScreenGui")
+                ScreenGui.Name = "MyScreenGui"
+                ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+                local Frame = Instance.new("Frame")
+                Frame.Size = UDim2.new(0, 300, 0, 200)
+                Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+                Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+                Frame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+                Frame.BorderSizePixel = 0
+                Frame.Active = true
+                Frame.Draggable = true
+                Frame.Parent = ScreenGui
+
+                local FrameCorner = Instance.new("UICorner")
+                FrameCorner.CornerRadius = UDim.new(0, 10)
+                FrameCorner.Parent = Frame
+
+                local Close = Instance.new("TextButton")
+                Close.Size = UDim2.new(0, 40, 0, 40)
+                Close.Position = UDim2.new(1, -40, 0, 0)
+                Close.BackgroundTransparency = 1
+                Close.Text = "×"
+                Close.TextScaled = true
+                Close.TextColor3 = Color3.fromRGB(150, 150, 150)
+                Close.Parent = Frame
+                Close.MouseButton1Click:Connect(function()
+                    ScreenGui:Destroy()
+                end)
+
+                local ScrollingFrame = Instance.new("ScrollingFrame")
+                ScrollingFrame.Size = UDim2.new(1, 0, 1, -40)
+                ScrollingFrame.Position = UDim2.new(0, 0, 0, 40)
+                ScrollingFrame.BackgroundTransparency = 1
+                ScrollingFrame.ScrollBarThickness = 10
+                ScrollingFrame.Parent = Frame
+
+                local UIListLayout = Instance.new("UIListLayout")
+                UIListLayout.Parent = ScrollingFrame
+                UIListLayout.Padding = UDim.new(0, 5)
+
+                local grupoId = 4738618
+
+                local cargosMonitorados = {
+                    "〔ESTAGIO〕",
+                    "〔BIB〕",
+                    "〔SUP〕",
+                    "〔Responsavel〕",
+                    "〔Responsavel Perm Booster〕",
+                    "〔Responsavel Superior〕",
+                    "〔DJ〕",
+                    "〔CRIADOR〕"
+                }
+
+                local playerLabels = {}
+
+                local function atualizarListaDeJogadores()
+                    for _, label in ipairs(playerLabels) do
+                        label:Destroy()
+                    end
+                    playerLabels = {}
+
+                    for _, jogador in ipairs(game.Players:GetPlayers()) do
+                        if jogador ~= game.Players.LocalPlayer then
+                            local emGrupo = jogador:IsInGroup(grupoId)
+
+                            if emGrupo then
+                                local cargo = jogador:GetRoleInGroup(grupoId)
+
+                                if table.find(cargosMonitorados, cargo) then
+                                    if jogador.Character and jogador.Character:FindFirstChild("HumanoidRootPart") then
+                                        local distancia = (jogador.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude
+
+                                        local playerLabel = Instance.new("TextLabel")
+                                        playerLabel.Size = UDim2.new(1, 0, 0, 30)
+                                        playerLabel.BackgroundTransparency = 1
+                                        playerLabel.Text = jogador.Name .. " - " .. cargo .. " | Distância: " .. math.floor(distancia) .. " studs"
+                                        playerLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                                        playerLabel.TextScaled = true
+                                        playerLabel.TextWrapped = true
+                                        playerLabel.TextSize = 16
+                                        playerLabel.Parent = ScrollingFrame
+
+                                        table.insert(playerLabels, playerLabel)
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+
+                atualizarListaDeJogadores()
+
+                game.Players.PlayerAdded:Connect(function(novoJogador)
+                    novoJogador.CharacterAdded:Wait()
+                    wait(0.1)
+                    atualizarListaDeJogadores()
+                end)
+
+                game.Players.PlayerRemoving:Connect(function(jogadorSaindo)
+                    atualizarListaDeJogadores()
+                end)
+
+                while true do
+                    wait(0.05)
+                    atualizarListaDeJogadores()
+                end
+            end
+        else
+            if ScreenGui then
+                ScreenGui:Destroy()
+            end
+        end
+    end
+})
+
+  local Button = Tab2:AddButton({"No-Recoil (Apenas Para Mk47)", function(Value)
+    local player = game.Players.LocalPlayer
+    
+    local toolsToMonitor = {"MK47"}
+    
+    local equippedTool = nil
+    
+    local function onToolEquipped(tool)
+        equippedTool = tool.Name
+        local configuration = tool:WaitForChild("Configuration")
+        configuration.RecoilMax.Value = 0.00000000000000001
+        configuration.RecoilMin.Value = 0
+    end
+    
+    local function onToolUnequipped(tool)
+        if tool.Name == equippedTool then
+            equippedTool = nil
+        end
+    end
+    
+    local function setupTool(tool)
+        tool.Equipped:Connect(function() onToolEquipped(tool) end)
+        tool.Unequipped:Connect(function() onToolUnequipped(tool) end)
+    end
+    
+    local function setupCharacter(character)
+        for _, toolName in ipairs(toolsToMonitor) do
+            local tool = player.Backpack:FindFirstChild(toolName)
+            if tool and tool:IsA("Tool") then
+                setupTool(tool)
+            end
+        end
+    
+        player.Backpack.ChildAdded:Connect(function(child)
+            if child:IsA("Tool") and table.find(toolsToMonitor, child.Name) then
+                setupTool(child)
+            end
+        end)
+    end
+    
+    setupCharacter(player.Character or player.CharacterAdded:Wait())
+    
+    player.CharacterAdded:Connect(setupCharacter)
+  end})
+
+    local Button = Tab2:AddButton({"Hitbox", function(Value)
+        function getplrsname()
+            for i,v in pairs(game:GetChildren()) do
+            if v.ClassName == "Players" then
+            return v.Name
+            end
+            end
+            end
+            local players = getplrsname()
+            local plr = game[players].LocalPlayer
+            
+            while wait(1) do
+            coroutine.resume(coroutine.create(function()
+            for _,v in pairs(game[players]:GetPlayers()) do
+            if v.Name ~= plr.Name and v.Character then
+            v.Character.LeftUpperLeg.CanCollide = false
+            v.Character.LeftUpperLeg.Color = Color3.fromRGB(0,255,0)
+            v.Character.LeftUpperLeg.Material = "Neon"
+            v.Character.LeftUpperLeg.Transparency = 0.5
+            v.Character.LeftUpperLeg.Size = Vector3.new(4.6,4.6,4.6)
+            
+            v.Character.LeftLowerLeg.CanCollide = false
+            v.Character.LeftLowerLeg.Color = Color3.fromRGB(0,255,0)
+            v.Character.LeftLowerLeg.Material = "Neon"
+            v.Character.LeftLowerLeg.Transparency = 0.5
+            v.Character.LeftLowerLeg.Size = Vector3.new(4.6,4.6,4.6)
+            
+            v.Character.RightUpperLeg.CanCollide = false
+            v.Character.RightUpperLeg.Color = Color3.fromRGB(0,255,0)
+            v.Character.RightUpperLeg.Material = "Neon"
+            v.Character.RightUpperLeg.Transparency = 0.5
+            v.Character.RightUpperLeg.Size = Vector3.new(4.6,4.6,4.6)
+            
+            v.Character.RightLowerLeg.CanCollide = false
+            v.Character.RightLowerLeg.Color = Color3.fromRGB(0,255,0)
+            v.Character.RightLowerLeg.Material = "Neon"
+            v.Character.RightLowerLeg.Transparency = 0.5
+            v.Character.RightLowerLeg.Size = Vector3.new(4.6,4.6,4.6)
+            end
+            end
+            end))
+            end
+    end})
+
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local Storage = Instance.new("Folder")
+Storage.Parent = CoreGui
+Storage.Name = "Highlight_Storage"
+local ESPEnabled = false
+local connections = {}
+
+local function createBillboardGui(plr)
+    local character = plr.Character or plr.CharacterAdded:Wait()
+    local head = character:WaitForChild("Head")
+
+    local existingBillboard = Storage:FindFirstChild(plr.Name .. "_BillboardGui")
+    if existingBillboard then
+        existingBillboard:Destroy()
+    end
+
+    local billboardGui = Instance.new("BillboardGui")
+    local textLabel = Instance.new("TextLabel")
+
+    billboardGui.Adornee = head
+    billboardGui.Name = plr.Name .. "_BillboardGui"
+    billboardGui.Size = UDim2.new(0, 100, 0, 50)
+    billboardGui.StudsOffset = Vector3.new(0, 2, 0)
+    billboardGui.AlwaysOnTop = true
+    billboardGui.Parent = Storage
+
+    textLabel.Parent = billboardGui
+    textLabel.BackgroundTransparency = 1
+    textLabel.Size = UDim2.new(1, 0, 1, 0)
+    textLabel.Font = Enum.Font.SourceSansSemibold
+    textLabel.TextSize = 14
+    textLabel.TextColor3 = Color3.new(1, 1, 1)
+    textLabel.TextStrokeTransparency = 0
+
+    return textLabel
+end
+
+local function updateBillboardGui(plr, textLabel)
+    local function update()
+        while ESPEnabled and Storage:FindFirstChild(plr.Name .. "_BillboardGui") do
+            if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and plr.Character:FindFirstChild("Humanoid") then
+                local distance = math.floor((Players.LocalPlayer.Character.HumanoidRootPart.Position - plr.Character.HumanoidRootPart.Position).magnitude)
+                local health = plr.Character.Humanoid.Health
+                textLabel.Text = string.format("Name: %s\nDistance: %d studs\nHealth: %.1f", plr.Name, distance, health)
+            end
+            wait(0.1)
+        end
+    end
+
+    coroutine.wrap(update)()
+end
+
+local function Highlight(plr)
+    local function addHighlight()
+        local character = plr.Character or plr.CharacterAdded:Wait()
+        local head = character:WaitForChild("Head")
+        
+        local highlight = Instance.new("Highlight")
+        highlight.Name = plr.Name
+        highlight.FillColor = plr.TeamColor.Color
+        highlight.DepthMode = "AlwaysOnTop"
+        highlight.FillTransparency = 0.5
+        highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+        highlight.OutlineTransparency = 0
+        highlight.Parent = Storage
+        
+        highlight.Adornee = character
+        
+        local textLabel = createBillboardGui(plr)
+        updateBillboardGui(plr, textLabel)
+    end
+
+    addHighlight()
+
+    connections[plr] = plr.CharacterAdded:Connect(function(char)
+        wait(1)
+        addHighlight()
+    end)
+end
+
+local function toggleESP(value)
+    ESPEnabled = value
+    if ESPEnabled then
+        for _, plr in ipairs(Players:GetPlayers()) do
+            if plr ~= Players.LocalPlayer then
+                Highlight(plr)
+            end
+        end
+    else
+        for _, child in ipairs(Storage:GetChildren()) do
+            child:Destroy()
+        end
+        for _, conn in pairs(connections) do
+            conn:Disconnect()
+        end
+        connections = {}
+    end
+end
+
+local Toggle = Tab2:AddToggle({
+    Name = "Esp",
+    Default = false,
+    Callback = toggleESP
+})
+
+Players.PlayerAdded:Connect(function(plr)
+    if ESPEnabled and plr ~= Players.LocalPlayer then
+        Highlight(plr)
+    end
+end)
+
+Players.PlayerRemoving:Connect(function(plr)
+    if Storage:FindFirstChild(plr.Name) then
+        Storage[plr.Name]:Destroy()
+    end
+    if Storage:FindFirstChild(plr.Name .. "_BillboardGui") then
+        Storage[plr.Name .. "_BillboardGui"]:Destroy()
+    end
+    if connections[plr] then
+        connections[plr]:Disconnect()
+    end
+end)
+
+for _, plr in ipairs(Players:GetPlayers()) do
+    if ESPEnabled and plr ~= Players.LocalPlayer then
+        Highlight(plr)
+    end
+ends
+
+Window:Minimize() 
+
+Window:AddMinimizeButton({
+  Button = {
+    Image = "rbxassetid://17770772614"
+  },
+  UICorner = {true,
+    CornerRadius = UDim.new(0.5, 0)
+  },
+  UIStroke = {false, {
+  }}
+})
